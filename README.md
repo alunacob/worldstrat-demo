@@ -3,7 +3,7 @@
 
 ## Run the notebook on Binder
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alunacob/worldstrat-demo/main?urlpath=lab)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alunacob/worldstrat-demo/master?urlpath=lab)
 
 ## Run the notebook locally using docker
 
