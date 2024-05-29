@@ -23,7 +23,7 @@ WORKDIR ${HOME}
 COPY . .
 
 # Create the conda environment
-RUN mamba env create -n worldstrat --file environment.yaml
+RUN conda env create -n worldstrat --file environment.yaml
 
 # Ensure the environment is activated and Jupyter Lab is started
 RUN echo "conda activate worldstrat" >> ~/.profile
