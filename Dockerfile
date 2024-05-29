@@ -20,6 +20,7 @@ WORKDIR ${HOME}
 # Make sure the contents of our repo are in the current directory
 COPY . .
 
+RUN conda update -n base -c conda-forge conda
 # Create the conda environment
 RUN mamba env create -n worldstrat --file environment.yaml
 
