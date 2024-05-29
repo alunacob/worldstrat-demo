@@ -13,19 +13,12 @@ RUN adduser --disabled-password \
 
 USER ${NB_USER}
 
-ENV SSL_NO_VERIFY=1
-RUN conda config --set ssl_verify false
-
 
 # Set the working directory
 WORKDIR ${HOME}
 
 # Make sure the contents of our repo are in the current directory
 COPY . .
-
-# Add pip configuration
-RUN mkdir -p ${HOME}/.pip && \
-    echo "[global]\ntrusted-host = pypi.python.org\n               pypi.org\n               files.pythonhosted.org" > ${HOME}/.pip/pip.conf
 
 # Create the conda environment
 RUN mamba env create -n worldstrat --file environment.yaml
@@ -36,6 +29,5 @@ RUN echo "conda activate worldstrat" >> ~/.bashrc
 ENV PATH ${HOME}/.conda/envs/worldstrat/bin:$PATH
 
 EXPOSE 8888
-
 
 CMD ["bash", "-c", "source activate worldstrat && jupyter lab --ip=0.0.0.0 --no-browser --allow-root"]
