@@ -8,6 +8,9 @@ ENV HOME /home/${NB_USER}
 
 RUN conda update -y -n base -c conda-forge conda
 
+# Create the conda environment
+RUN conda env create -n worldstrat --file environment.yaml
+
 RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
@@ -22,8 +25,7 @@ WORKDIR ${HOME}
 # Make sure the contents of our repo are in the current directory
 COPY . .
 
-# Create the conda environment
-RUN conda env create -n worldstrat --file environment.yaml
+
 
 # Ensure the environment is activated and Jupyter Lab is started
 RUN echo "conda activate worldstrat" >> ~/.profile
