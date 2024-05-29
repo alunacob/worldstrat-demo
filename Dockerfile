@@ -1,12 +1,12 @@
 FROM condaforge/mambaforge:24.3.0-0
 
-RUN conda update -y -n base -c conda-forge conda
-
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
+
+RUN conda update -y -n base -c conda-forge conda
 
 RUN adduser --disabled-password \
     --gecos "Default user" \
