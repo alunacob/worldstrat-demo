@@ -1,6 +1,6 @@
 FROM condaforge/mambaforge:24.3.0-0
 
-ARG NB_USER=jovyan
+ARG NB_USER=jovyano
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
