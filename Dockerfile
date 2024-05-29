@@ -1,5 +1,7 @@
 FROM condaforge/mambaforge:24.3.0-0
 
+RUN conda update -y -n base -c conda-forge conda
+
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
@@ -20,7 +22,6 @@ WORKDIR ${HOME}
 # Make sure the contents of our repo are in the current directory
 COPY . .
 
-RUN conda update -n base -c conda-forge conda
 # Create the conda environment
 RUN mamba env create -n worldstrat --file environment.yaml
 
