@@ -2,7 +2,7 @@
 
 
 ## Run the notebook on Binder
-<a href="[http://example.com/](https://mybinder.org/v2/gh/alunacob/worldstrat-demo/master?urlpath=lab)" target="_blank"><img src="https://mybinder.org/badge_logo.svg"></img></a>
+<a href="https://mybinder.org/v2/gh/alunacob/worldstrat-demo/master?urlpath=lab" target="_blank"><img src="https://mybinder.org/badge_logo.svg"></img></a>
 
 
 ## Run the notebook locally using docker
