@@ -1,10 +1,12 @@
 FROM condaforge/mambaforge:24.3.0-0
 
-ARG NB_USER=jovyan
+ARG NB_USER=jovyano
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
+
+RUN conda update -y -n base -c conda-forge conda
 
 RUN adduser --disabled-password \
     --gecos "Default user" \
@@ -13,9 +15,6 @@ RUN adduser --disabled-password \
 
 USER ${NB_USER}
 
-ENV SSL_NO_VERIFY=1
-RUN conda config --set ssl_verify false
-
 
 # Set the working directory
 WORKDIR ${HOME}
@@ -23,12 +22,8 @@ WORKDIR ${HOME}
 # Make sure the contents of our repo are in the current directory
 COPY . .
 
-# Add pip configuration
-RUN mkdir -p ${HOME}/.pip && \
-    echo "[global]\ntrusted-host = pypi.python.org\n               pypi.org\n               files.pythonhosted.org" > ${HOME}/.pip/pip.conf
-
 # Create the conda environment
-RUN mamba env create -n worldstrat --file environment.yaml
+RUN conda env create -n worldstrat --file environment.yaml
 
 # Ensure the environment is activated and Jupyter Lab is started
 RUN echo "conda activate worldstrat" >> ~/.profile
@@ -36,6 +31,5 @@ RUN echo "conda activate worldstrat" >> ~/.bashrc
 ENV PATH ${HOME}/.conda/envs/worldstrat/bin:$PATH
 
 EXPOSE 8888
-
 
 CMD ["bash", "-c", "source activate worldstrat && jupyter lab --ip=0.0.0.0 --no-browser --allow-root"]
